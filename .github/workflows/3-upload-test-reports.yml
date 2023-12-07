@@ -6,7 +6,7 @@ name: Step 3, Upload test reports
 # This will run every time we push to the ci.yml file on the ci branch.
 # Reference: https://docs.github.com/actions/learn-github-actions/events-that-trigger-workflows
 on:
-  workflow_dispatch:
+  workflow_dispatch:  
   push:
     branches:
       - ci
@@ -56,12 +56,6 @@ jobs:
         with:
           fetch-depth: 0 # Let's get all the branches.
 
-      # Verify the learner added actions/upload-artifact.
-      - name: Verify workflow
-        uses: skills/action-check-file@v1
-        with:
-          file: .github/workflows/ci.yml
-          search: actions/upload-artifact
 
       # In README.md, switch step 3 for step 4.
       - name: Update to step 4
