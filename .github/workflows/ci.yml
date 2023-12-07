@@ -1,33 +1,3 @@
-# Ceci est un workflow de base pour vous aider à démarrer avec Actions
-
-name: CI
-# Contrôle quand le workflow sera exécuté
-on:
-  # Déclenche le workflow sur les événements push ou pull request mais uniquement pour la branche "main"
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Vous permet d'exécuter ce workflow manuellement depuis l'onglet Actions
-  workflow_dispatch:
-
-# Une exécution de workflow est composée d'un ou plusieurs jobs qui peuvent s'exécuter séquentiellement ou en parallèle
-jobs:
-  # Ce workflow contient un seul job appelé "build"
-  build:
-    # Le type de runner que le job utilisera
-    runs-on: ubuntu-latest
-
-    # Les étapes représentent une séquence de tâches qui seront exécutées dans le cadre du job
-    steps:
-      # Vérifie votre dépôt sous $GITHUB_WORKSPACE, afin que votre job puisse y accéder
-      - uses: actions/checkout@v3
-    
-      - name: Run markdown lint
-        run: |
-          npm install remark-cli remark-preset-lint-consistent
-          npx remark . --use remark-preset-lint-consistent --frail
 
 build:
   runs-on: ubuntu-latest
