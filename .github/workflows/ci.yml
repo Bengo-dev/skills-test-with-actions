@@ -1,29 +1,31 @@
-# This is a basic workflow to help you get started with Actions
+# Ceci est un workflow de base pour vous aider à démarrer avec Actions
 
 name: CI
 
-# Controls when the workflow will run
+# Contrôle quand le workflow sera exécuté
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Déclenche le workflow sur les événements push ou pull request mais uniquement pour la branche "main"
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Vous permet d'exécuter ce workflow manuellement depuis l'onglet Actions
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# Une exécution de workflow est composée d'un ou plusieurs jobs qui peuvent s'exécuter séquentiellement ou en parallèle
 jobs:
-  # This workflow contains a single job called "build"
+  # Ce workflow contient un seul job appelé "build"
   build:
-    # The type of runner that the job will run on
+    # Le type de runner que le job utilisera
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Les étapes représentent une séquence de tâches qui seront exécutées dans le cadre du job
     steps:
-  - name: Run markdown lint
-  run: |
-    npm install remark-cli remark-preset-lint-consistent
-    npx remark . --use remark-preset-lint-consistent --frail
-_underscore_
+      # Vérifie votre dépôt sous $GITHUB_WORKSPACE, afin que votre job puisse y accéder
+      - uses: actions/checkout@v3
+    
+      - name: Run markdown lint
+        run: |
+          npm install remark-cli remark-preset-lint-consistent
+          npx remark . --use remark-preset-lint-consistent --frail
